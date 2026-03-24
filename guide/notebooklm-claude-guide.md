@@ -18,7 +18,6 @@ By connecting NotebookLM to your preferred AI tools via the **Model Context Prot
 ## Prerequisites
 
 - **Python 3.11+**: The core engine for the connector.
-- **Node.js 18+**: Required for some MCP operations.
 - **uv**: A high-performance Python package manager (recommended for speed and reliability).
 - **Google Account**: For access to [notebooklm.google.com](https://notebooklm.google.com).
 
@@ -29,7 +28,6 @@ By connecting NotebookLM to your preferred AI tools via the **Model Context Prot
 ### 1. Install dependencies
 Ensure you have the latest tools installed. We use `uv` to handle everything.
 
-> 🚫 **Important:** Do not install Node.js. This tool is Python-based. If prompted to install Node.js or Visual Studio Build Tools, skip or decline—they are not needed.
 
 **A. Install Python Engine**: 
 Run this in your Terminal:
