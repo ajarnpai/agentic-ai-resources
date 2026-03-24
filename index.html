@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NotebookLM MCP Installer | CBS 88th Anniversary</title>
+    <title>NotebookLM MCP Installation Guide | CBS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@700;800&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
@@ -224,6 +224,15 @@
             border: 1px solid #333;
             box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
             text-align: left;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .terminal-block code {
+            word-break: break-all;
+            white-space: pre-wrap;
+            color: #d4d4d4 !important;
         }
 
         .terminal-actions {
@@ -312,8 +321,8 @@
         </header>
 
         <section class="hero">
-            <h1>NotebookLM MCP</h1>
-            <p class="tagline">88 Years of Excellence: Double the Infinity, Lifelong Learning with NotebookLM.</p>
+            <h1>NotebookLM MCP<br>Installation Guide</h1>
+            <p style="font-size: 1.1rem; color: var(--secondary); font-weight: 600; margin-bottom: 2rem;">Kanis Saengchote · Chulalongkorn Business School</p>
             
             <div class="setup-card" style="text-align: left; margin: 2rem 0; padding: 2.5rem; background: rgba(0,35,102,0.03);">
                 <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.5rem;">Why NotebookLM + AI?</h3>
@@ -340,12 +349,34 @@
             • 🍎 <strong>Mac:</strong> Press `Cmd + Space`, type <b>Terminal</b>, and press Enter.
         </div>
 
+        <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(128,0,0,0.05); border-left: 4px solid var(--secondary); border-radius: 8px;">
+            <p style="color: var(--secondary); font-weight: bold; margin-bottom: 0.5rem; font-size: 1.1rem;">🚫 Do Not Install Node.js</p>
+            <p style="font-size: 0.9rem; line-height: 1.5;">This tool is <strong>100% Python-based</strong>. If prompted to install <strong>Node.js</strong> or <strong>Visual Studio Build Tools</strong> during any part of the setup, please <strong>skip or decline</strong>—they are not needed and will consume over 7GB of space.</p>
+        </div>
+
         <div class="setup-grid">
             <div class="setup-card">
-                <h3>Step 1: Python</h3>
-                <p>The "translator" for AI tools. Download and install from python.org.</p>
-                <p style="font-size: 0.75rem; color: var(--secondary); font-weight: bold; margin-bottom: 1rem;">⚠️ Windows: Check "Add Python to PATH" during install!</p>
-                <a href="https://www.python.org/downloads/" target="_blank" class="setup-btn" style="text-align: center; text-decoration: none; display: block;">Download Python</a>
+                <h3>Step 1: Python Engine</h3>
+                <p>The "engine" that runs everything. Paste this into your Terminal:</p>
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span>Terminal</span>
+                </div>
+                <div class="terminal-block">
+                    <code style="color: inherit;">uv python install</code>
+                </div>
+                <div class="terminal-actions" style="margin-bottom: 0.5rem;">
+                    <button class="terminal-copy-btn" onclick="copyToClipboard('uv python install')">Copy Command</button>
+                </div>
+                <div class="helper-text" style="font-size: 0.8rem; margin-top: 0.5rem; background: rgba(0,35,102,0.03);">
+                    <strong>Type these answers when asked:</strong><br>
+                    • Add to PATH now? <strong>y</strong><br>
+                    • Install CPython note? <strong>y</strong><br>
+                    • View online help? <strong>n</strong>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--secondary); font-weight: bold;">
+                    ✅ Check Ready: Run <code>python --version</code>
+                </p>
             </div>
             <div class="setup-card">
                 <h3>Step 2: uv Helper</h3>
@@ -362,10 +393,15 @@
                     <button class="terminal-copy-btn" onclick="copyToClipboard('powershell -ExecutionPolicy ByPass -c \'irm https://astral.sh/uv/install.ps1 | iex\'')">Copy for Windows</button>
                     <button class="terminal-copy-btn" onclick="copyToClipboard('curl -LsSf https://astral.sh/uv/install.sh | sh')">Copy for Mac</button>
                 </div>
+                <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--secondary); font-weight: bold;">
+                    ✅ Check Ready: Run <code>uv --version</code>.<br>
+                    ✨ Important: Restart your Terminal/PowerShell now!
+                </p>
             </div>
             <div class="setup-card">
                 <h3>Step 3: Install Tool</h3>
-                <p>Install the actual NotebookLM connector in one hit.</p>
+                <p>Install the actual NotebookLM connector in one hit.<br>
+                <span style="color: var(--secondary); font-size: 0.8rem;">⚠️ <strong>Required:</strong> Ensure you restarted your terminal after Step 2!</span></p>
                 <div class="terminal-header">
                     <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
                     <span>Terminal</span>
@@ -376,8 +412,13 @@
                 <div class="terminal-actions">
                     <button class="terminal-copy-btn" onclick="copyToClipboard('uv tool install notebooklm-mcp-cli')">Copy Command</button>
                 </div>
+                <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--secondary); font-weight: bold;">
+                    ✅ Check Ready: You should see "Installed 2 executables: nlm, notebooklm-mcp"
+                </p>
             </div>
         </div>
+
+
 
         <!-- Phase 2: Connection -->
         <h2 style="margin-bottom: 1.5rem;">2. The Connection</h2>
@@ -394,47 +435,76 @@
             <div class="terminal-actions">
                 <button class="terminal-copy-btn" onclick="copyToClipboard('nlm login')">Copy Login Command</button>
             </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--secondary); font-weight: bold;">
+                ✅ Check Ready: You should see "Successfully authenticated!" and your email.
+            </p>
         </div>
 
         <!-- Phase 3: Setup Claude Desktop -->
         <h2 style="margin-bottom: 1.5rem;">3. Setup Claude Desktop (Required)</h2>
         <div class="setup-card" style="margin-bottom: 2rem; background: rgba(0,35,102,0.02); border-color: var(--primary);">
-            <p style="margin-bottom: 1rem;">Claude Desktop requires a manual link to talk to NotebookLM. Follow these two steps:</p>
-            
-            <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Step A: Open your Config File</h4>
-            <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.5rem;">
-                Copy the path for your computer and paste it into your file explorer: <br>
-                • 🪟 <strong>Windows:</strong> <code>%AppData%\Claude\claude_desktop_config.json</code><br>
-                • 🍎 <strong>Mac:</strong> <code>~/Library/Application Support/Claude/claude_desktop_config.json</code>
+            <div style="margin-bottom: 2rem; padding: 1rem; background: rgba(128,0,0,0.05); border-left: 4px solid var(--secondary); border-radius: 4px;">
+                <p style="color: var(--secondary); font-weight: bold; margin-bottom: 0.5rem;">⚠️ Windows Installer Warning</p>
+                <p style="font-size: 0.85rem;">Install Claude Desktop using the direct <strong>.exe installer</strong> from <a href="https://claude.ai/download" target="_blank" style="color: var(--secondary); font-weight: bold;">claude.ai/download</a> — <strong>NOT</strong> from the Microsoft Store. The Store version uses sandboxing that prevents it from reading the config file.</p>
+            </div>
+
+            <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Step A: Locate or Create your Config File</h4>
+            <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1rem;">
+                Paste the path into your file explorer. If the <strong>Claude</strong> folder or <strong>json</strong> file doesn't exist, create them manually: <br>
+                • 🪟 <strong>Windows:</strong> <code>%AppData%\Claude\claude_desktop_config.json</code> (Tip: Use <strong>Notepad</strong>, but ensure you save as <code>.json</code> and <strong>NOT</strong> <code>.json.txt</code>!)<br>
+                • 🍎 <strong>Mac:</strong> <code>~/Library/Application Support/Claude/claude_desktop_config.json</code> (Tip: Use <strong>TextEdit</strong> in Plain Text mode)
             </p>
 
-            <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Step B: Add the JSON Block</h4>
-            <p style="font-size: 0.9rem; margin-bottom: 1rem;">Paste this code inside the <code>"mcpServers"</code> section of your file:</p>
+            <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Step B: Add the JSON Config</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem;">If the file is <strong>NEW/EMPTY</strong>, paste this entire block:</p>
             
             <div class="terminal-header">
                 <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                <span>Config JSON Snippet</span>
+                <span>Full Template (New File)</span>
             </div>
             <div class="terminal-block">
-<pre style="color: inherit; margin: 0; font-family: inherit;">"notebooklm": {
-  "command": "notebooklm-mcp"
+<pre style="color: inherit; margin: 0; font-family: inherit;">{
+  "mcpServers": {
+    "notebooklm-mcp": {
+      "command": "notebooklm-mcp"
+    }
+  }
 }</pre>
             </div>
-            <div class="terminal-actions">
-                <button class="terminal-copy-btn" onclick='copyToClipboard("\"notebooklm\": { \"command\": \"notebooklm-mcp\" }")'>Copy JSON Block</button>
+            <div class="terminal-actions" style="margin-bottom: 2rem;">
+                <button class="terminal-copy-btn" onclick='copyToClipboard("{\n  \"mcpServers\": {\n    \"notebooklm-mcp\": {\n      \"command\": \"notebooklm-mcp\"\n    }\n  }\n}")'>Copy Full Template</button>
             </div>
+
+            <div style="margin-bottom: 2rem; padding: 1rem; background: rgba(128,0,0,0.05); border-left: 4px solid var(--secondary); border-radius: 4px;">
+                <p style="color: var(--secondary); font-weight: bold; margin-bottom: 0.5rem;">⚠️ Reinstall Warning</p>
+                <p style="font-size: 0.85rem;">After any reinstall of Claude Desktop on Windows, always re-check your config file. The installer can sometimes overwrite it with defaults, deleting your MCP entries. Re-add the <code>mcpServers</code> block if needed.</p>
+            </div>
+
+            <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Step C: Verify the Config File</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem;">Run this in PowerShell to confirm your file has the correct content:</p>
+            <div class="terminal-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span>PowerShell</span>
+            </div>
+            <div class="terminal-block">
+                <code style="color: inherit;">cat "$env:APPDATA\Claude\claude_desktop_config.json"</code>
+            </div>
+            <div class="terminal-actions" style="margin-bottom: 2rem;">
+                <button class="terminal-copy-btn" onclick='copyToClipboard("cat \"$env:APPDATA\\Claude\\claude_desktop_config.json\"")'>Copy Verification Command</button>
+            </div>
+
+            <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Step D: Restart Claude Desktop</h4>
+            <p style="font-size: 0.8rem; color: var(--secondary); margin-bottom: 1rem;"><strong>✨ Important:</strong> Restart the Claude Desktop app completely after saving the file!</p>
             
             <div class="helper-text" style="background: rgba(128,0,0,0.03); border-color: var(--secondary); margin-top: 1rem;">
-                <strong>💡 Tip for Existing Configs:</strong> If you already have other tools in your JSON, simply ask Claude: <br>
-                <em>"Can you fix this JSON for me? I want to add NotebookLM to my mcpServers block."</em><br>
-                <strong>>> Copy the JSON block above into Claude along with your existing JSON file content.</strong>
+                <strong>💡 Tip for Existing Configs (Windows):</strong> If you already have other MCP servers, run this PowerShell command to safely merge the NotebookLM entry: <br>
+                <code style="word-break: break-all; font-size: 0.75rem;">$config = Get-Content "$env:APPDATA\Claude\claude_desktop_config.json" | ConvertFrom-Json; $config | Add-Member -Type NoteProperty -Name "mcpServers" -Value @{"notebooklm-mcp" = @{"command" = "notebooklm-mcp"}}; $config | ConvertTo-Json -Depth 10 | Set-Content "$env:APPDATA\Claude\claude_desktop_config.json"</code>
             </div>
-            <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 1rem;"><strong>✨ Important:</strong> Restart the Claude Desktop app completely after saving the file!</p>
         </div>
 
-        <!-- Phase 4: Other Tools -->
-        <h2 style="margin-bottom: 1.5rem;">4. Setup Other Tools (Optional)</h2>
-        <p style="margin-bottom: 1.5rem; color: var(--text-dim);">If you use other AI tools, you can connect them instantly using these one-click commands in your Terminal.</p>
+        <!-- Phase 4: Other IDEs & Connections (Optional) -->
+        <h2 style="margin-bottom: 1.5rem;">4. Setup Other IDEs & Connections (Optional)</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--text-dim);">If you use other AI tools or code editors, you can connect them instantly using these one-click commands in your Terminal.</p>
         
         <div class="setup-grid">
             <div class="setup-card">
@@ -459,15 +529,114 @@
             </div>
         </div>
 
-        <!-- Phase 5: Verification -->
-        <h2 style="margin-top: 4rem; margin-bottom: 1.5rem;">5. Success!</h2>
-        <div class="setup-card" style="background: var(--surface); border-color: var(--primary);">
-            <p>Restart your AI tool and try asking:</p>
-            <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--primary); font-family: 'Space Grotesk', sans-serif;">
-                <li>"List all my NotebookLM notebooks"</li>
-                <li>"Summarize my research sources"</li>
-                <li>"What are the key findings in my notes?"</li>
-            </ul>
+
+        <!-- Section 6: Troubleshooting Guide -->
+        <h2 style="margin-top: 4rem; margin-bottom: 1.5rem;">6. Troubleshooting Guide</h2>
+        <div class="setup-card" style="margin-bottom: 2rem; background: rgba(0,35,102,0.02); border-color: var(--secondary); padding: 2.5rem;">
+            
+            <div style="margin-bottom: 3rem;">
+                <h4 style="margin-bottom: 0.5rem; color: var(--secondary);">Issue 1: MCP Not Working (Config Correct)</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">
+                    ⚠️ <strong>Windows Users:</strong> You might have the sandboxed <strong>Microsoft Store</strong> version of Claude. Check this by running:
+                </p>
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span>PowerShell Check</span>
+                </div>
+                <div class="terminal-block">
+                    <code>ls "$env:LOCALAPPDATA\Packages\" | Where-Object {$_.Name -like "*Claude*"}</code>
+                </div>
+                <div class="terminal-actions">
+                    <button class="terminal-copy-btn" onclick='copyToClipboard("ls \"$env:LOCALAPPDATA\\Packages\\\" | Where-Object {$_.Name -like \"*Claude*\"}")'>Copy Command</button>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">
+                    If you see <strong>Claude_pzs8sxrjxfjjc</strong>, uninstall it via <strong>Settings → Apps</strong>, then reinstall using the direct .exe from <a href="https://claude.ai/download" style="color: var(--primary); font-weight: bold;">claude.ai/download</a>.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 3rem;">
+                <h4 style="margin-bottom: 0.5rem; color: var(--secondary);">Issue 2: Command Not Recognized</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">
+                    If you get a <strong>"not recognized"</strong> error when running <code>notebooklm-mcp</code>, the package isn't installed or not on PATH.
+                </p>
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span>Terminal Fix</span>
+                </div>
+                <div class="terminal-block">
+                    <code>uv tool install notebooklm-mcp-cli</code>
+                </div>
+                <div class="terminal-actions">
+                    <button class="terminal-copy-btn" onclick="copyToClipboard('uv tool install notebooklm-mcp-cli')">Copy Install Fix</button>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">
+                    Then <strong>Close and Reopen</strong> your PowerShell window and try again.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 3rem;">
+                <h4 style="margin-bottom: 0.5rem; color: var(--secondary);">Issue 3: Python/uv Not Working</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">
+                    Run these to verify installation and PATH:
+                </p>
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span>Verify Core Tools</span>
+                </div>
+                <div class="terminal-block">
+                    <code>python --version; uv --version</code>
+                </div>
+                <div class="terminal-actions">
+                    <button class="terminal-copy-btn" onclick="copyToClipboard('python --version; uv --version')">Copy Verify</button>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">
+                    ⚠️ <strong>Critical:</strong> During Python installation, you MUST check <strong>"Add Python to PATH"</strong>.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 3rem;">
+                <h4 style="margin-bottom: 0.5rem; color: var(--secondary);">Issue 4: Auth Errors (Login Expired)</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">
+                    Your Google login session has expired. Re-authenticate:
+                </p>
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span>Terminal Login</span>
+                </div>
+                <div class="terminal-block">
+                    <code>nlm login</code>
+                </div>
+                <div class="terminal-actions">
+                    <button class="terminal-copy-btn" onclick="copyToClipboard('nlm login')">Copy Login Fix</button>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">
+                    This opens a browser for you to log in again. Sessions expire every <strong>2–4 weeks</strong>.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 0.5rem; color: var(--secondary);">Issue 5: Reinstalled Claude & MCP Stopped</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">
+                    The reinstaller overwrites your config. Re-add the MCP entry using this PowerShell <strong>merge command</strong>:
+                </p>
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span>PowerShell Fix (Windows Only)</span>
+                </div>
+                <div class="terminal-block">
+<code style="word-break: break-all;">$config = Get-Content "$env:APPDATA\Claude\claude_desktop_config.json" | ConvertFrom-Json; $config | Add-Member -Type NoteProperty -Name "mcpServers" -Value @{"notebooklm-mcp" = @{"command" = "notebooklm-mcp"}}; $config | ConvertTo-Json -Depth 10 | Set-Content "$env:APPDATA\Claude\claude_desktop_config.json"</code>
+                </div>
+                <div class="terminal-actions">
+                    <button class="terminal-copy-btn" onclick='copyToClipboard("$config = Get-Content \"$env:APPDATA\\Claude\\claude_desktop_config.json\" | ConvertFrom-Json; $config | Add-Member -Type NoteProperty -Name \"mcpServers\" -Value @{\"notebooklm-mcp\" = @{\"command\" = \"notebooklm-mcp\"}}; $config | ConvertTo-Json -Depth 10 | Set-Content \"$env:APPDATA\\Claude\\claude_desktop_config.json\"")'>Copy Fix Command</button>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--secondary); font-weight: bold;">
+                    ✨ Fully Restart Claude Desktop after running this!
+                </p>
+            </div>
+        </div>
+
+        <div style="margin-top: 4rem; padding: 1.5rem; background: rgba(0,35,102,0.03); border-radius: 12px; font-size: 0.9rem; text-align: center;">
+            <p>🛡️ <strong>Future Proofing (Optional):</strong> While not strictly required for NotebookLM, you may eventually want to install <a href="https://nodejs.org/" target="_blank" style="color: var(--primary); font-weight: bold;">Node.js</a> to support advanced tools like our Gemini CLI or other official MCP servers.</p>
         </div>
 
         <footer>
