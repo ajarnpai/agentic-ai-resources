@@ -195,7 +195,6 @@ Edit your `mcp_config.json` (usually found in your VS Code extension storage) an
 - **Switch Profiles:** `nlm login switch <name>`
 - **Deep Research:** `nlm research "your query"` (Starts a fast/deep search to find new sources).
 - **Studio Tools:** `nlm studio --type audio` (Create audio overviews/podcasts).
-- **🛡️ Future Proofing:** If you plan to use our **Gemini CLI** or official MCP servers, you will eventually need **Node.js** installed from [nodejs.org](https://nodejs.org).
 
 ---
 
