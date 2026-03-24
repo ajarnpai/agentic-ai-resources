@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotebookLM MCP Installer | CBS 88th Anniversary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@700;800&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #002366; /* CBS Royal Blue */
+            --secondary: #800000; /* CBS Deep Maroon */
+            --bg: #ffffff;
+            --surface: #f8f9fa;
+            --text: #1a1c1e;
+            --text-dim: #44474e;
+            --glass: rgba(0, 35, 102, 0.03);
+            --glass-border: rgba(0, 35, 102, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        .logo-img {
+            width: 220px;
+            height: auto;
+            object-fit: contain;
+            /* Logo has white background, making it stand out as a clean badge */
+            border-radius: 8px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        .cbs-text {
+            display: none;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        /* Install Command */
+        .install-box {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 4rem;
+        }
+
+        code {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,35,102,0.4);
+        }
+
+        /* Grid */
+        .setup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .setup-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .setup-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            background: rgba(0, 35, 102, 0.05);
+            box-shadow: 0 10px 20px rgba(0,35,102,0.05);
+        }
+
+        .setup-card h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .setup-card p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+        }
+
+        .setup-btn {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--text);
+            padding: 0.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .setup-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .card-all {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(0,35,102,0.2) 0%, rgba(128,0,0,0.1) 100%);
+            border-color: rgba(179, 197, 255, 0.3);
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            border-top: 1px solid var(--glass-border);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        footer a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        /* Terminal-style blocks */
+        .terminal-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.2rem;
+            border-radius: 8px 8px 0 0;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.95rem;
+            position: relative;
+            margin-bottom: 0;
+            border: 1px solid #333;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+            text-align: left;
+        }
+
+        .terminal-actions {
+            background: #2d2d2d;
+            padding: 0.5rem 1rem;
+            border-radius: 0 0 8px 8px;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            border: 1px solid #333;
+            border-top: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .terminal-block::before {
+            content: "> ";
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .terminal-header {
+            background: #333;
+            color: #ccc;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.75rem;
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+            margin-bottom: -1px;
+            border: 1px solid #444;
+        }
+
+        .dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .terminal-copy-btn {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terminal-copy-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .helper-text {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            background: var(--surface);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        @keyframes slideUp {
+            from { transform: translate(-50%, 100%); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.2rem; }
+            .install-box { flex-direction: column; gap: 1rem; text-align: center; }
+            .copy-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="logo/Logo_88th(BG White).png" alt="CBS 88th Anniversary Logo" class="logo-img">
+            </div>
+        </header>
+
+        <section class="hero">
+            <h1>NotebookLM MCP</h1>
+            <p class="tagline">88 Years of Excellence: Double the Infinity, Lifelong Learning with NotebookLM.</p>
+            
+            <div class="setup-card" style="text-align: left; margin: 2rem 0; padding: 2.5rem; background: rgba(0,35,102,0.03);">
+                <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.5rem;">Why NotebookLM + AI?</h3>
+                <p style="margin-bottom: 1.2rem; line-height: 1.7;">
+                    <strong>NotebookLM</strong> is Google's powerful AI tool that uses your own documents as the primary source of truth. Unlike general AI, it stays "grounded" in your research, notes, and data.
+                </p>
+                <p style="margin-bottom: 1.2rem; line-height: 1.7;">
+                    <strong>The Power of Connection:</strong> By linking NotebookLM to tools like Claude or Cursor via the Model Context Protocol (MCP), you give your favorite AI agents a <strong>"brain"</strong> full of your specific knowledge. 
+                </p>
+                <ul style="margin-left: 1.5rem; color: var(--text-dim); line-height: 1.6;">
+                    <li><strong>No more copying and pasting:</strong> Claude can read your entire project library instantly.</li>
+                    <li><strong>Fact-Checked Responses:</strong> Your AI uses your sources to answer, significantly reducing "hallucinations."</li>
+                    <li><strong>One-Stop Guide:</strong> This site provides everything you need to bridge that gap and build your custom technical knowledge base.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Phase 1: Foundation -->
+        <h2 style="margin-bottom: 1.5rem;">1. The Foundation</h2>
+        
+        <div class="helper-text">
+            <strong>How to open your Terminal:</strong><br>
+            • 🪟 <strong>Windows:</strong> Press the `Windows` key, type <b>PowerShell</b>, and press Enter.<br>
+            • 🍎 <strong>Mac:</strong> Press `Cmd + Space`, type <b>Terminal</b>, and press Enter.
+        </div>
+
+        <div class="setup-grid">
+            <div class="setup-card">
+                <h3>Step 1: Python</h3>
+                <p>The "translator" for AI tools. Download and install from python.org.</p>
+                <p style="font-size: 0.75rem; color: var(--secondary); font-weight: bold; margin-bottom: 1rem;">⚠️ Windows: Check "Add Python to PATH" during install!</p>
+                <a href="https://www.python.org/downloads/" target="_blank" class="setup-btn" style="text-align: center; text-decoration: none; display: block;">Download Python</a>
+            </div>
+            <div class="setup-card">
+                <h3>Step 2: uv Helper</h3>
+                <p>The "app store" for Python. Paste this into your Terminal/PowerShell:</p>
+                
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span>Installation (Windows/Mac)</span>
+                </div>
+                <div class="terminal-block">
+                    <code style="color: inherit;">uv-installer-command</code>
+                </div>
+                <div class="terminal-actions">
+                    <button class="terminal-copy-btn" onclick="copyToClipboard('powershell -ExecutionPolicy ByPass -c \'irm https://astral.sh/uv/install.ps1 | iex\'')">Copy for Windows</button>
+                    <button class="terminal-copy-btn" onclick="copyToClipboard('curl -LsSf https://astral.sh/uv/install.sh | sh')">Copy for Mac</button>
+                </div>
+            </div>
+            <div class="setup-card">
+                <h3>Step 3: Install Tool</h3>
+                <p>Install the actual NotebookLM connector in one hit.</p>
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span>Terminal</span>
+                </div>
+                <div class="terminal-block">
+                    <code style="color: inherit;">uv tool install notebooklm-mcp-cli</code>
+                </div>
+                <div class="terminal-actions">
+                    <button class="terminal-copy-btn" onclick="copyToClipboard('uv tool install notebooklm-mcp-cli')">Copy Command</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2: Connection -->
+        <h2 style="margin-bottom: 1.5rem;">2. The Connection</h2>
+        <div class="setup-card" style="margin-bottom: 4rem;">
+            <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Login to Google</h3>
+            <p style="margin-bottom: 1rem;">Run this in your Terminal. It will open your web browser for a one-time Google login.</p>
+            <div class="terminal-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span>Terminal</span>
+            </div>
+            <div class="terminal-block">
+                <code style="color: inherit;">nlm login</code>
+            </div>
+            <div class="terminal-actions">
+                <button class="terminal-copy-btn" onclick="copyToClipboard('nlm login')">Copy Login Command</button>
+            </div>
+        </div>
+
+        <!-- Phase 3: Setup Claude Desktop -->
+        <h2 style="margin-bottom: 1.5rem;">3. Setup Claude Desktop (Required)</h2>
+        <div class="setup-card" style="margin-bottom: 2rem; background: rgba(0,35,102,0.02); border-color: var(--primary);">
+            <p style="margin-bottom: 1rem;">Claude Desktop requires a manual link to talk to NotebookLM. Follow these two steps:</p>
+            
+            <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Step A: Open your Config File</h4>
+            <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.5rem;">
+                Copy the path for your computer and paste it into your file explorer: <br>
+                • 🪟 <strong>Windows:</strong> <code>%AppData%\Claude\claude_desktop_config.json</code><br>
+                • 🍎 <strong>Mac:</strong> <code>~/Library/Application Support/Claude/claude_desktop_config.json</code>
+            </p>
+
+            <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Step B: Add the JSON Block</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem;">Paste this code inside the <code>"mcpServers"</code> section of your file:</p>
+            
+            <div class="terminal-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span>Config JSON Snippet</span>
+            </div>
+            <div class="terminal-block">
+<pre style="color: inherit; margin: 0; font-family: inherit;">"notebooklm": {
+  "command": "notebooklm-mcp"
+}</pre>
+            </div>
+            <div class="terminal-actions">
+                <button class="terminal-copy-btn" onclick='copyToClipboard("\"notebooklm\": { \"command\": \"notebooklm-mcp\" }")'>Copy JSON Block</button>
+            </div>
+            
+            <div class="helper-text" style="background: rgba(128,0,0,0.03); border-color: var(--secondary); margin-top: 1rem;">
+                <strong>💡 Tip for Existing Configs:</strong> If you already have other tools in your JSON, simply ask Claude: <br>
+                <em>"Can you fix this JSON for me? I want to add NotebookLM to my mcpServers block."</em><br>
+                <strong>>> Copy the JSON block above into Claude along with your existing JSON file content.</strong>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--secondary); margin-top: 1rem;"><strong>✨ Important:</strong> Restart the Claude Desktop app completely after saving the file!</p>
+        </div>
+
+        <!-- Phase 4: Other Tools -->
+        <h2 style="margin-bottom: 1.5rem;">4. Setup Other Tools (Optional)</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--text-dim);">If you use other AI tools, you can connect them instantly using these one-click commands in your Terminal.</p>
+        
+        <div class="setup-grid">
+            <div class="setup-card">
+                <h3>Gemini</h3>
+                <button class="setup-btn" onclick="copyToClipboard('nlm setup add gemini')">nlm setup add gemini</button>
+            </div>
+            <div class="setup-card">
+                <h3>Cursor</h3>
+                <button class="setup-btn" onclick="copyToClipboard('nlm setup add cursor')">nlm setup add cursor</button>
+            </div>
+            <div class="setup-card">
+                <h3>Cline</h3>
+                <button class="setup-btn" onclick="copyToClipboard('nlm setup add cline')">nlm setup add cline</button>
+            </div>
+            <div class="setup-card">
+                <h3>Antigravity</h3>
+                <button class="setup-btn" onclick="copyToClipboard('nlm setup add antigravity')">nlm setup add antigravity</button>
+            </div>
+            <div class="setup-card card-all" style="grid-column: span 2;">
+                <h3>Setup All Together</h3>
+                <button class="setup-btn" onclick="copyToClipboard('nlm setup add all')" style="border-color: var(--secondary)">nlm setup add all</button>
+            </div>
+        </div>
+
+        <!-- Phase 5: Verification -->
+        <h2 style="margin-top: 4rem; margin-bottom: 1.5rem;">5. Success!</h2>
+        <div class="setup-card" style="background: var(--surface); border-color: var(--primary);">
+            <p>Restart your AI tool and try asking:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--primary); font-family: 'Space Grotesk', sans-serif;">
+                <li>"List all my NotebookLM notebooks"</li>
+                <li>"Summarize my research sources"</li>
+                <li>"What are the key findings in my notes?"</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Kanis Saengchote · Chulalongkorn Business School</p>
+            <p>Co-created with Gemini Antigravity</p>
+            <div style="margin-top: 1rem;">
+                <a href="https://github.com/jacob-bd/notebooklm-mcp-cli">GitHub Repo</a>
+                <a href="https://cbs.chula.ac.th">Official CBS Website</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerText = 'Copied to clipboard!';
+                document.body.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transition = 'opacity 0.3s';
+                    setTimeout(() => toast.remove(), 300);
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
