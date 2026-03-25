@@ -89,7 +89,7 @@ nlm login --check
 #### Step A: Locate or Create your Config File
 Navigate to the following directory in your file explorer:
 - **Windows:** `%AppData%\Claude\claude_desktop_config.json`
-- **Mac:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Mac:** `~/Library/Application\ Support/Claude/claude_desktop_config.json`
 
 #### Step B: Add the JSON Config
 If the file is **new/empty**, paste this full block:

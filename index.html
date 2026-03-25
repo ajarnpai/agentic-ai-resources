@@ -437,7 +437,7 @@
             <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1rem;">
                 Paste the path into your file explorer. If the <strong>Claude</strong> folder or <strong>json</strong> file doesn't exist, create them manually: <br>
                 • 🪟 <strong>Windows:</strong> <code>%AppData%\Claude\claude_desktop_config.json</code> (Tip: Use <strong>Notepad</strong>, but ensure you save as <code>.json</code> and <strong>NOT</strong> <code>.json.txt</code>!)<br>
-                • 🍎 <strong>Mac:</strong> <code>~/Library/Application Support/Claude/claude_desktop_config.json</code> (Tip: Use <strong>TextEdit</strong> in Plain Text mode)
+                • 🍎 <strong>Mac:</strong> <code>~/Library/Application\ Support/Claude/claude_desktop_config.json</code> (Tip: Use <strong>TextEdit</strong> in Plain Text mode)
             </p>
 
             <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Step B: Add the JSON Config</h4>
@@ -676,6 +676,28 @@
                 </div>
                 <p style="font-size: 0.8rem; color: var(--secondary); font-weight: bold;">
                     ✨ Fully Restart Claude Desktop after running this!
+                </p>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 0.5rem; color: var(--secondary);">Issue 6: Port 9222 Login Error</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">
+                    If <code>nlm login</code> shows <strong>Error: Cannot connect to browser on port 9222</strong>, Chrome's remote debugging isn't running. You must start Chrome with a specific flag.
+                </p>
+                <div class="helper-text" style="font-size: 0.85rem; background: rgba(128,0,0,0.03); border-color: var(--secondary); margin-bottom: 1rem;">
+                    ⚠️ <strong>CRITICAL:</strong> You MUST fully quit all existing Chrome windows first (Cmd + Q on Mac or exit completely on Windows).
+                </div>
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span>Mac Terminal Fix</span>
+                </div>
+                <div class="terminal-block"><code>open -a "Google Chrome" --args --remote-debugging-port=9222</code></div>
+                <div class="terminal-actions" style="margin-bottom: 1rem;">
+                    <button class="terminal-copy-btn" onclick='copyToClipboard("open -a \"Google Chrome\" --args --remote-debugging-port=9222")'>Copy Chrome Command</button>
+                    <button class="terminal-copy-btn" onclick='copyToClipboard("open -a \"Google Chrome Beta\" --args --remote-debugging-port=9222")'>Copy Beta/Canary Command</button>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">
+                    Once Chrome opens, log into your Google account (if needed), then return to a new terminal tab and run <code>nlm login</code> again.
                 </p>
             </div>
         </div>
