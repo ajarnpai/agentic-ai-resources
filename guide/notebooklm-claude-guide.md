@@ -23,6 +23,14 @@ By connecting NotebookLM to your preferred AI tools via the **Model Context Prot
 
 ---
 
+## ⚠️ Security & Privacy Advisory
+
+- **Unofficial Tool:** This CLI is a community-built tool, not officially developed or endorsed by Google or Anthropic. It could break or stop working due to underlying UI or API updates.
+- **Authentication Risk:** Because Google has not released an official API for NotebookLM, this tool authenticates by extracting browser session cookies. If your cookies leak, malicious actors could access your Google services.
+- **Recommendation:** Do not use your primary personal or work Google account. Create a new, dedicated workspace/sandbox account specifically for use with this tool so you can manage these risks safely.
+
+---
+
 ## Phase 1: Environment Setup
 
 ### 1. Install dependencies
