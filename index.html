@@ -353,24 +353,20 @@
 
         <div class="setup-grid">
             <div class="setup-card">
-                <h3>Step 1: Python Engine</h3>
-                <p>The "engine" that runs everything. Paste this into your Terminal:</p>
-                <div class="terminal-header">
-                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                    <span>Terminal</span>
+                <h3>Step 1: Install Python</h3>
+                <p>The "engine" that runs everything. You need Python 3.11+ to proceed.</p>
+                <div style="margin: 1.5rem 0; text-align: center;">
+                    <a href="https://www.python.org/downloads/" target="_blank" class="terminal-copy-btn" style="display: block; text-decoration: none; padding: 0.8rem; background: var(--primary); color: white; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; transition: all 0.2s; background: linear-gradient(135deg, var(--primary) 0%, rgba(0,35,102,0.8) 100%);">📥 Download from python.org</a>
                 </div>
-                <div class="terminal-block"><code>uv python install</code></div>
-                <div class="terminal-actions" style="margin-bottom: 0.5rem;">
-                    <button class="terminal-copy-btn" onclick="copyToClipboard('uv python install')">Copy Command</button>
-                </div>
-                <div class="helper-text" style="font-size: 0.8rem; margin-top: 0.5rem; background: rgba(0,35,102,0.03);">
-                    <strong>Type these answers when asked:</strong><br>
-                    • Add to PATH now? <strong>y</strong><br>
-                    • Install CPython note? <strong>y</strong><br>
-                    • View online help? <strong>n</strong>
+                <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1rem; line-height: 1.5;">
+                    <em>(Note: You will likely get a newer version like 3.14.3, which is perfect.)</em>
+                </p>
+                <div class="helper-text" style="font-size: 0.8rem; background: rgba(128,0,0,0.03); border-color: var(--secondary);">
+                    ⚠️ <strong>CRITICAL WINDOWS STEP:</strong><br>
+                    During Windows installation, you MUST check the box that says <strong>"Add python.exe to PATH"</strong> at the very bottom.
                 </div>
                 <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--secondary); font-weight: bold;">
-                    ✅ Check Ready: Run <code>python --version</code>
+                    ✅ Check Ready: Open Terminal & Run <code>python --version</code>
                 </p>
             </div>
             <div class="setup-card">
@@ -512,6 +508,29 @@
                 <h3>Setup All Together</h3>
                 <button class="setup-btn" onclick="copyToClipboard('nlm setup add all')" style="border-color: var(--secondary)">nlm setup add all</button>
             </div>
+        </div>
+
+        <!-- Phase 5: Verification -->
+        <h2 style="margin-top: 4rem; margin-bottom: 1.5rem;">5. Verification & Success</h2>
+        <div class="setup-card" style="margin-bottom: 4rem; background: linear-gradient(135deg, rgba(0,255,0,0.02) 0%, rgba(0,35,102,0.03) 100%); border-color: rgba(0,255,0,0.2);">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem;">🎉 You're All Set!</h3>
+                <p>To verify the tool is installed and running correctly, run this final test command:</p>
+            </div>
+            
+            <div class="terminal-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span>Terminal Check</span>
+            </div>
+            <div class="terminal-block"><code>notebooklm-mcp</code></div>
+            <div class="terminal-actions" style="margin-bottom: 2rem;">
+                <button class="terminal-copy-btn" onclick="copyToClipboard('notebooklm-mcp')">Copy Test Command</button>
+            </div>
+
+            <p style="text-align: center; font-size: 0.9rem; color: var(--text-dim);">
+                ✅ The terminal should output the server information with no errors.<br>
+                You can now use NotebookLM within your installed AI Assistant!
+            </p>
         </div>
 
 

@@ -30,17 +30,13 @@ Ensure you have the latest tools installed. We use `uv` to handle everything.
 
 
 **A. Install Python Engine**: 
-Run this in your Terminal:
-```bash
-uv python install
-```
-**Important Prompt Answers:**
-- Add command directory to your PATH now? **y**
-- Install CPython note? **y**
-- View online help? **n**
+Download and install Python 3.11+ from [python.org](https://www.python.org/downloads/).
+*(Note: You will likely get a newer version like 3.14.3, which is perfect and fully supported).*
+
+> ⚠️ **CRITICAL WINDOWS STEP:** During installation, you MUST check the box that says **"Add python.exe to PATH"** at the very bottom before clicking Install.
 
 **B. Verify Python**: 
-Run `python --version`. If it shows 3.11 or higher, you are good to go!
+Run `python --version` in your terminal. If it shows 3.11 or higher, you are good to go!
 
 
 
